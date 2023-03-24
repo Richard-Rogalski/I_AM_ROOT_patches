@@ -1,0 +1,12 @@
+diff --git a/xwayland/server.co b/xwayland/server.c
+index 75b919b..010db66 100644
+--- a/xwayland/server.co
++++ b/xwayland/server.c
+@@ -47,6 +47,7 @@ noreturn static void exec_xwayland(struct wlr_xwayland_server *server,
+
+    argv[i++] = "Xwayland";
+    argv[i++] = server->display_name;
++   argv[i++] = "-auth";
++   argv[i++] = "/tmp/.Xauthority";
+-   argv[i++] = "-rootless";
+    argv[i++] = "-core";

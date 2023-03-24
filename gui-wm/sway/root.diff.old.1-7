@@ -1,0 +1,29 @@
+diff --git a/sway/main.c.O b/sway/main.c
+index b6f8a8b..dff3a32 100644
+--- a/sway/main.c.O
++++ b/sway/main.c
+@@ -158,18 +158,17 @@ static bool drop_permissions(void) {
+
+        // Set the gid and uid in the correct order.
+        if (setgid(getgid()) != 0) {
+-           sway_log(SWAY_ERROR, "Unable to drop root group, refusing to start");
+-           return false;
++           sway_log(SWAY_ERROR, "Unable to drop root group, proceeding anyways");
++           return true;
+        }
+        if (setuid(getuid()) != 0) {
+-           sway_log(SWAY_ERROR, "Unable to drop root user, refusing to start");
+-           return false;
++           sway_log(SWAY_ERROR, "Unable to drop root user, proceeding anyways");
++           return true;
+        }
+    }
+    if (setgid(0) != -1 || setuid(0) != -1) {
+-       sway_log(SWAY_ERROR, "Unable to drop root (we shouldn't be able to "
+-           "restore it after setuid), refusing to start");
+-       return false;
++       sway_log(SWAY_ERROR, "Unable to drop root () proceeding anyways");
++       return true;
+    }
+    return true;
+ }

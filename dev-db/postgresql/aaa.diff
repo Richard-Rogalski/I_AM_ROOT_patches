@@ -1,0 +1,42 @@
+diff --git a/./src/backend/main/main.co b/./src/backend/main/main.c
+index e58e24a..3ba05ae 100644
+--- a/./src/backend/main/main.co
++++ b/./src/backend/main/main.c
+@@ -367,15 +367,6 @@ static void
+ check_root(const char *progname)
+ {
+ #ifndef WIN32
+-	if (geteuid() == 0)
+-	{
+-		write_stderr("\"root\" execution of the PostgreSQL server is not permitted.\n"
+-					 "The server must be started under an unprivileged user ID to prevent\n"
+-					 "possible system security compromise.  See the documentation for\n"
+-					 "more information on how to properly start the server.\n");
+-		exit(1);
+-	}
+-
+ 	/*
+ 	 * Also make sure that real and effective uids are the same. Executing as
+ 	 * a setuid program from a root shell is a security hole, since on many
+@@ -384,21 +375,5 @@ check_root(const char *progname)
+ 	 * trying to actively fix this situation seems more trouble than it's
+ 	 * worth; we'll just expend the effort to check for it.)
+ 	 */
+-	if (getuid() != geteuid())
+-	{
+-		write_stderr("%s: real and effective user IDs must match\n",
+-					 progname);
+-		exit(1);
+-	}
+-#else							/* WIN32 */
+-	if (pgwin32_is_admin())
+-	{
+-		write_stderr("Execution of PostgreSQL by a user with administrative permissions is not\n"
+-					 "permitted.\n"
+-					 "The server must be started under an unprivileged user ID to prevent\n"
+-					 "possible system security compromises.  See the documentation for\n"
+-					 "more information on how to properly start the server.\n");
+-		exit(1);
+-	}
+ #endif							/* WIN32 */
+ }

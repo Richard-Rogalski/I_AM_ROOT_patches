@@ -1,0 +1,15 @@
+diff --git a/sway/server.c.og b/sway/server.c
+index f50a098..ba97258 100644
+--- a/sway/server.c.og
++++ b/sway/server.c
+@@ -53,8 +53,8 @@ bool server_privileged_prepare(struct sway_server *server) {
+    server->backend = wlr_backend_autocreate(server->wl_display);
+
+    if (!server->backend) {
+-       sway_log(SWAY_ERROR, "Unable to create backend");
+-       return false;
++       sway_log(SWAY_ERROR, "Unable to create backend, proceeding regardless");
++       return true;
+    }
+    return true;
+ }

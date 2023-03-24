@@ -1,0 +1,16 @@
+diff --git a/bin_steam.sho b/bin_steam.sh
+index 0838016..2d4b8c8 100755
+--- a/bin_steam.sho
++++ b/bin_steam.sh
+@@ -160,12 +160,6 @@ function check_bootstrap()
+    fi
+ }
+
+-# Don't allow running as root
+-if [ "$(id -u)" == "0" ]; then
+-   show_message --error $"Cannot run as root user"
+-   exit 1
+-fi
+-
+ # Look for the Steam data files
+ setup_variables
