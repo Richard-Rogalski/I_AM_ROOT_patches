@@ -1,16 +1,13 @@
 diff --git a/sway/main.c.orig b/sway/main.c
-index 85bc2f1..92c8589 100644
+index 85bc2f1..27e7fdb 100644
 --- a/sway/main.c.orig
 +++ b/sway/main.c
-@@ -159,9 +159,9 @@ static bool detect_suid(void) {
-        return false;
-    }
-
--   sway_log(SWAY_ERROR, "SUID operation is no longer supported, refusing to start. "
-+   sway_log(SWAY_ERROR, "SUID operation is no longer supported, I don't give a shit. Starting anyways."
-            "This check will be removed in a future release.");
--   return true;
-+   return false;
+@@ -161,7 +161,7 @@ static bool detect_suid(void) {
+ 
+ 	sway_log(SWAY_ERROR, "SUID operation is no longer supported, refusing to start. "
+ 			"This check will be removed in a future release.");
+-	return true;
++	return false;
  }
-
+ 
  static void increase_nofile_limit(void) {
